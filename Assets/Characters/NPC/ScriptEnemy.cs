@@ -8,6 +8,7 @@ public class ScriptEnemy : MonoBehaviour
     public float distance = 0.5f;
     public LayerMask layerMask;
     public LayerMask pcLayerMask;
+    public Animator pcAnimator;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -44,15 +45,13 @@ public class ScriptEnemy : MonoBehaviour
 
     private void HitPC()
     {
-        Vector3 position = transform.position;
-
         RaycastHit2D hit2DRight, hit2DLeft;
-        hit2DRight = Physics2D.Raycast(position, transform.right, this.distance, pcLayerMask);
-        hit2DLeft = Physics2D.Raycast(position, -transform.right, this.distance, pcLayerMask);
-        if (hit2DRight.collider != null || hit2DLeft.collider != null)
+        hit2DRight = Physics2D.Raycast(transform.position, transform.right, this.distance, pcLayerMask);
+        hit2DLeft = Physics2D.Raycast(transform.position, -transform.right, this.distance, pcLayerMask);
+        if (hit2DRight.collider || hit2DLeft.collider)
         {
-            Destroy(hit2DRight.collider.gameObject);
-            Destroy(hit2DLeft.collider.gameObject);
+            this.pcAnimator.SetBool(Animator.StringToHash("IsDead"), true);
+            Time.timeScale = 0;
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class scriptGame : MonoBehaviour
 {
     private bool _isPaused = false;
+    public Animator pcAnimator;
 
     private AudioSource _stageSound;
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class scriptGame : MonoBehaviour
     void Update()
     {
         this.Pause();
+        this.GameOver();
     }
 
     private void Pause()
@@ -40,5 +42,16 @@ public class scriptGame : MonoBehaviour
                 SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
             }
         }
+    }
+
+    private void GameOver()
+    {
+        bool isDead = this.pcAnimator.GetBool(Animator.StringToHash("IsDead"));
+        if (isDead)
+        {
+            Time.timeScale = 0;
+            _stageSound.Stop();
+        }
+        Debug.Log(isDead);
     }
 }

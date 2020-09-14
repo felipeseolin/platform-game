@@ -69,7 +69,7 @@ public class scriptPC : MonoBehaviour
     private void Jump()
     {
         if (_isOverGround &&
-            (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.O))
+            (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         )
         {
             _rigidbody2D.AddForce(new Vector2(0, this.jumpForce));

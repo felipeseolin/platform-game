@@ -5,6 +5,7 @@ using UnityEngine;
 public class scriptHole : MonoBehaviour
 {
     public LayerMask pcLayerMask;
+    public Animator pcAnimator;
 
     private float _width;
     // Start is called before the first frame update
@@ -23,7 +24,8 @@ public class scriptHole : MonoBehaviour
 
         if (hit2D.collider != null)
         {
-            Destroy(hit2D.collider.gameObject);
+            this.pcAnimator.SetBool(Animator.StringToHash("IsDead"), true);
+            Time.timeScale = 0;
         }
     }
 }
