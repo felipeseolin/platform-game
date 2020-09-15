@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class scriptGame : MonoBehaviour
 {
-    private bool _isPaused = false;
     public Animator pcAnimator;
 
+    private bool _isPaused = false;
     private AudioSource _stageSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,5 @@ public class scriptGame : MonoBehaviour
             Time.timeScale = 0;
             _stageSound.Stop();
         }
-        Debug.Log(isDead);
     }
 }

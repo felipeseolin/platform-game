@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 672055482}
   - component: {fileID: 672055481}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BtnExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 721945158}
-        m_MethodName: Exit
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 721945159}
   - component: {fileID: 721945158}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: StartScreenController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 721945157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f8107f1591239c6b8a98dc225d0394, type: 3}
+  m_Script: {fileID: 11500000, guid: e0efc273c8be456c4986a7b254d6610d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &721945159
@@ -443,7 +443,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 721945158}
-        m_MethodName: Start
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

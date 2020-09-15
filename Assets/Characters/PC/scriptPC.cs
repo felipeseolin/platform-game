@@ -27,7 +27,7 @@ public class scriptPC : MonoBehaviour
         _isOverGround = true;
         this.JumpingAnimation();
         
-        transform.parent = other.transform;
+        transform.parent = other.collider.transform;
     }
 
     private void OnCollisionExit2D(Collision2D other)

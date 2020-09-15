@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class scriptMenu : MonoBehaviour
+public class scriptStartScreen : MonoBehaviour
 {
-    public void Start()
+    public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
 
-    public void Exit()
+    public void ExitGame()
     {
         Application.Quit();
     }
