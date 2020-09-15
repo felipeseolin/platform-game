@@ -9,6 +9,7 @@ public class scriptPC : MonoBehaviour
     public float velocity = 10;
     public float jumpForce = 370;
     public LayerMask layerMask;
+    public AudioSource jumpSound;
 
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
@@ -44,6 +45,7 @@ public class scriptPC : MonoBehaviour
         this.Move();
         this.Jump();
         this.KillEnemy();
+        this.EndOfStage();
     }
 
     private void Move()
@@ -72,6 +74,7 @@ public class scriptPC : MonoBehaviour
             (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         )
         {
+            jumpSound.Play();
             _rigidbody2D.AddForce(new Vector2(0, this.jumpForce));
         }
     }
@@ -87,5 +90,16 @@ public class scriptPC : MonoBehaviour
         hit2D = Physics2D.Raycast(transform.position, -transform.up, 0.5f, layerMask);
         if (hit2D.collider != null)
             Destroy(hit2D.collider.gameObject);
+    }
+
+    private void EndOfStage()
+    {
+        RaycastHit2D hit2D;
+        hit2D = Physics2D.Raycast(this.transform.position, this.transform.right, 5f, LayerMask.GetMask("EndOfStage"));
+        if (hit2D.collider != null)
+        {
+            this._animator.SetBool(Animator.StringToHash("HasWon"), true);
+            Time.timeScale = 0;
+        }
     }
 }

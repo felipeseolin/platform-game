@@ -20,11 +20,11 @@ public class scriptGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.Pause();
+        this.PauseControl();
         this.GameOver();
     }
 
-    private void Pause()
+    private void PauseControl()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -33,14 +33,14 @@ public class scriptGame : MonoBehaviour
                 _isPaused = false;
                 Time.timeScale = 1;
                 _stageSound.Play();
-                SceneManager.UnloadSceneAsync(0);
+                SceneManager.UnloadSceneAsync(2);
             }
             else
             {
                 _isPaused = true;
                 Time.timeScale = 0;
                 _stageSound.Pause();
-                SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
             }
         }
     }

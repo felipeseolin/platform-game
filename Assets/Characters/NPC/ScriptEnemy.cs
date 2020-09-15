@@ -9,8 +9,10 @@ public class ScriptEnemy : MonoBehaviour
     public LayerMask layerMask;
     public LayerMask pcLayerMask;
     public Animator pcAnimator;
+    public AudioSource pcDeadSound;
 
     private Rigidbody2D _rigidbody2D;
+    private bool _pcIsDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +50,12 @@ public class ScriptEnemy : MonoBehaviour
         RaycastHit2D hit2DRight, hit2DLeft;
         hit2DRight = Physics2D.Raycast(transform.position, transform.right, this.distance, pcLayerMask);
         hit2DLeft = Physics2D.Raycast(transform.position, -transform.right, this.distance, pcLayerMask);
-        if (hit2DRight.collider || hit2DLeft.collider)
+        if (!_pcIsDead && (hit2DRight.collider || hit2DLeft.collider))
         {
+            this._pcIsDead = true;
             this.pcAnimator.SetBool(Animator.StringToHash("IsDead"), true);
             Time.timeScale = 0;
+            this.pcDeadSound.Play();
         }
     }
 }
