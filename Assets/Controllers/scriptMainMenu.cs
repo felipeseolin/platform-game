@@ -32,9 +32,8 @@ public class scriptMainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        scriptGame.PcIsDead = false;
         this.ResumeGame();
-        Time.timeScale = 1f;
-        GameIsPaused = false;
         SceneManager.LoadScene(1);
     }
 

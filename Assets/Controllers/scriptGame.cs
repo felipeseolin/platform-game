@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class scriptGame : MonoBehaviour
 {
+    public static bool PcIsDead = false;
     public Animator pcAnimator;
-    
+    public GameObject gameOverUI;
+
     private AudioSource _stageSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        PcIsDead = false;
+        Time.timeScale = 1f;
         _stageSound = GetComponent<AudioSource>();
         _stageSound.Play();
     }
@@ -22,13 +26,17 @@ public class scriptGame : MonoBehaviour
         this.GameOver();
     }
 
-    private void GameOver()
+    public void GameOver()
     {
-        bool isDead = this.pcAnimator.GetBool(Animator.StringToHash("IsDead"));
-        if (isDead)
+        if (PcIsDead)
         {
             Time.timeScale = 0;
             _stageSound.Stop();
+            gameOverUI.SetActive(true);
+        }
+        else
+        {
+            gameOverUI.SetActive(false);
         }
     }
 }

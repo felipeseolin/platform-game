@@ -9,7 +9,6 @@ public class scriptHole : MonoBehaviour
     public AudioSource pcDeadSound;
 
     private float _width;
-    private bool _pcIsDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +24,9 @@ public class scriptHole : MonoBehaviour
     {
         RaycastHit2D hit2D = Physics2D.Raycast(transform.position, transform.right, _width * 10, pcLayerMask);
 
-        if (!_pcIsDead && hit2D.collider)
+        if (!scriptGame.PcIsDead && hit2D.collider)
         {
-            this._pcIsDead = true;
+            scriptGame.PcIsDead = true;
             this.pcAnimator.SetBool(Animator.StringToHash("IsDead"), true);
             Time.timeScale = 0;
             this.pcDeadSound.Play();
