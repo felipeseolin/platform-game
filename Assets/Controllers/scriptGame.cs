@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class scriptGame : MonoBehaviour
 {
     public Animator pcAnimator;
-
-    private bool _isPaused = false;
+    
     private AudioSource _stageSound;
 
     // Start is called before the first frame update
@@ -20,29 +19,7 @@ public class scriptGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.PauseControl();
         this.GameOver();
-    }
-
-    private void PauseControl()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (_isPaused)
-            {
-                _isPaused = false;
-                Time.timeScale = 1;
-                _stageSound.Play();
-                SceneManager.UnloadSceneAsync(2);
-            }
-            else
-            {
-                _isPaused = true;
-                Time.timeScale = 0;
-                _stageSound.Pause();
-                SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
-            }
-        }
     }
 
     private void GameOver()

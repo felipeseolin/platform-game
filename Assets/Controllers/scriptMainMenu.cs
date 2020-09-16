@@ -1,22 +1,58 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class scriptMainMenu : MonoBehaviour
 {
-    public GameObject scriptGame;
-    public void ContinueGame()
+    public static bool GameIsPaused = false;
+
+    public GameObject pauseMenuUI;
+
+    private void Start()
     {
-        Time.timeScale = 1;
-    }   
-    
-    public void RestartGame()
+        pauseMenuUI.SetActive(false);
+    }
+
+    void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    public void NewGame()
+    {
+        this.ResumeGame();
+        Time.timeScale = 1f;
+        GameIsPaused = false;
         SceneManager.LoadScene(1);
     }
 
-    public void ExitGame()
+    public void ResumeGame()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    public void PauseGame()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    public void QuitGame()
     {
         Application.Quit();
     }
