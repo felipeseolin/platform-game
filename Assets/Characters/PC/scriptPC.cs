@@ -98,6 +98,7 @@ public class scriptPC : MonoBehaviour
         hit2D = Physics2D.Raycast(this.transform.position, this.transform.right, 5f, LayerMask.GetMask("EndOfStage"));
         if (hit2D.collider != null)
         {
+            scriptGame.PcWon = true;
             this._animator.SetBool(Animator.StringToHash("HasWon"), true);
             Time.timeScale = 0;
         }
